@@ -1,0 +1,44 @@
+body{
+   
+    background-color: rgb(238, 236, 236);
+}
+.user{
+    color:rgb(255, 255, 255);
+    background-color: rgb(128, 128, 128);
+    border-radius: 2%;
+    padding: 10px 10px;
+    text-align: center;
+    
+}
+.getDetails{
+    background-color: rgb(175, 74, 150);
+    padding: 5px 10px;
+    /* margin-right:50% ; */
+    border-radius: 10%;
+}
+.getDetails:hover{
+    background-color: black;
+}
+#user-count{
+    margin-top: 10%;
+    padding: 5px;
+    border:1px solid black !important;
+    color:blue;
+}
+#load-user{
+    margin-top: 5px;
+    padding: 8px 50px;
+    margin-left: 45%;
+    box-shadow:5px 5px 10px gray;
+    margin-bottom: 2%;
+}
+#user-count:checked{
+    background-color: red !important;
+}
+.name{
+    color:red
+}
+.bal{
+    background-color: rgb(189, 222, 250);
+    text-align: center;
+}

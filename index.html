@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users API</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+    <div class="container">
+    <div class="cal-md8">
+<input class=" form-control" id="user-count" type="text"><button class="btn btn-primary"id="load-user">Load User</button>
+
+
+
+    <div id="users">
+
+    </div>
+    <div id="userdetails">
+
+    </div>
+</div>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+
+document.getElementById('load-user').addEventListener('click',function(){
+    const countText = document.getElementById('user-count').value;
+    const count = parseInt(countText);
+  
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(res => res.json())
+        .then(data => {
+           
+            data = data.slice(0,count);
+            const userContainer = document.getElementById('users');
+            userContainer.innerHTML = '';
+            for (let i = 0; i < data.length; i++) {
+                const user = data[i];
+                const p = document.createElement('p');
+                p.innerHTML = `<p class="user">Name: <strong>${user.name}</strong> <br><button class="getDetails"onClick=getUserDetail(${user.id})>Get Details</button></p>`;
+                userContainer.appendChild(p); 
+            }
+        })
+})
+
+
+        function getUserDetail(userId){
+            fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+            .then(res => res.json())
+            .then(data => {
+                
+                const detail = document.getElementById('userdetails');
+                detail.innerHTML = ` 
+                <div class="bal">
+                <h1 class="name">${data.name}</h1>
+                <h4>Email: ${data.email}</h4>
+                <p>Phone Number: ${data.phone}</p>
+                <p>UserName: ${data.username}</p>
+                <p>Website: ${data.website}</p>
+                </div>
+                `
+            })
+        }
+    </script>
+   
+</body>
+</html>
